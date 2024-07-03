@@ -52,6 +52,8 @@ jobs:
             echo "TODO: Build the backend API"
             npm run api:build
   # deploy step will run only after manual approval
+  hold:  # Name your approval job
+      type: approval
   deploy:
     docker:
       - image: 'cimg/base:stable'
@@ -76,7 +78,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
           type: approval
           requires:
             - build
